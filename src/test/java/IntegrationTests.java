@@ -64,4 +64,17 @@ public class IntegrationTests {
         Assert.assertEquals(0, basket.getTotalPrice());    
     }
 
+    @Test
+    public void WhenCompleteOrderClearTotalPrice() {
+        Basket basket = new Basket();
+        Menu mainMenu = new MainMenu(basket, new NullTextDisplay());
+        Menu addItemMenu = mainMenu.chooseOption(1);
+        mainMenu = addItemMenu.chooseOption(1);         
+        addItemMenu = mainMenu.chooseOption(1);
+        Menu completeOrderMenu = mainMenu.chooseOption(3);      
+        mainMenu = completeOrderMenu.chooseOption(1);
+
+        Assert.assertEquals(0, basket.getTotalPrice());    
+    }
+
 }
