@@ -51,4 +51,17 @@ public class IntegrationTests {
         public void displayLine(String line) {}
     }
 
+    @Test
+    public void WhenRemoveItemThenItemCostIsRemoved() {
+        Basket basket = new Basket();
+        Menu mainMenu = new MainMenu(basket, new NullTextDisplay());
+        Menu addItemMenu = mainMenu.chooseOption(1);
+        mainMenu = addItemMenu.chooseOption(1);         // Coffee
+        addItemMenu = mainMenu.chooseOption(1);
+        Menu removeItemMenu = mainMenu.chooseOption(2);
+        mainMenu = removeItemMenu.chooseOption(1);      // Remove coffee
+        
+        Assert.assertEquals(0, basket.getTotalPrice());    
+    }
+
 }
